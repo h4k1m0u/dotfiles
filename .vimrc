@@ -3,6 +3,9 @@
 " Add pathogen to vim
 execute pathogen#infect()
 
+" Enable syntax highlighting
+syntax on
+
 " Enable file type specific plugins
 filetype plugin on
 
@@ -81,3 +84,10 @@ let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 
 " Gist
 nnoremap <silent> <leader>g :Gist<CR>
+
+" Plugins needing python
+" Conque
+nnoremap <silent> <leader>c :ConqueTermVSplit phpsh<CR>
+
+" Gundo
+nnoremap <silent> <F5> :GundoToggle<CR>
