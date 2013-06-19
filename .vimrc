@@ -37,10 +37,6 @@ set matchpairs+=<:>
 nnoremap <silent> <leader><leader> :nohls<cr>
 nnoremap ; :
 vnoremap ; :
-
-" Autocompletion with <C-Space> (= <C-@> in Terminal)"
-imap <C-@> <C-Space>
-imap <C-Space> <C-x><C-o>
  
 " Simplify Split & Buffers switching
 nnoremap <silent> + :vnew<CR>
@@ -79,9 +75,6 @@ let g:autoclose_vim_commentmode = 1
 " Ack
 nnoremap <leader>a :Ack 
 
-" Syntactic
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-
 " Gist
 nnoremap <silent> <leader>g :Gist<CR>
 
@@ -91,3 +84,12 @@ nnoremap <silent> <leader>c :ConqueTermVSplit phpsh<CR>
 
 " Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
+
+"------------------------------------------------------------- Language
+"specific
+
+" Syntactic
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+
+" Save & run a python script
+nnoremap <silent> <F6> :w <Bar> !python %<CR>
