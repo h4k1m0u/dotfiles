@@ -27,6 +27,9 @@ set tabstop=4 " for <TAB>
 set shiftwidth=4 " for >>
 set expandtab
 
+" Set folding on indentation
+set foldmethod=indent
+
 " Hide modified buffers even without saving
 set hidden
 
@@ -77,6 +80,9 @@ nnoremap <leader>a :Ack
 
 " Gist
 nnoremap <silent> <leader>g :Gist<CR>
+
+" Eclim
+inoremap <C-space> <C-x><C-u>
 
 " Plugins needing python
 " Conque
