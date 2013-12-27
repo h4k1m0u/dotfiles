@@ -95,7 +95,8 @@ nnoremap <silent> <F5> :GundoToggle<CR>
 "specific
 
 " Syntactic
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers=['php', 'phpmd']
+let g:syntastic_python_checkers=['python', 'pyflakes']
 
 " Save & run a python script
 nnoremap <silent> <F6> :w <Bar> !python %<CR>

@@ -13,3 +13,4 @@
 # before we're going to the first run level.
 #
 /usr/local/bin/noip2
+/home/hakim/bin/matchendirect.sh
