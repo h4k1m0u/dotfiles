@@ -35,5 +35,5 @@ fortune | cowsay
 # Colors for bash prompt
 export PS1="\[\e[1;92m\]\u@\h\[\e[0m\] \[\e[1;31m\]\w $ \[\e[0m\]"
 
-# wrapper arround curl (to test RESTful services)
-. resty
+# rm save files to ~/.local/share/Trash/files
+alias rm=trash
