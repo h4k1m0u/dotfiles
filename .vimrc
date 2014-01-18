@@ -60,6 +60,11 @@ cmap w!! w !sudo tee > /dev/null %<CR>
 
 " NERDTree
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
+nnoremap <silent> <C-O> :NERDTree %<CR>
+
+" Session
+nnoremap <silent> <F7> :SaveSession<CR>
+nnoremap <silent> <F8> :OpenSession<CR>
 
 " Project
 nmap <silent> <F3> <Plug>ToggleProject
