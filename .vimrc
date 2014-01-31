@@ -103,5 +103,6 @@ nnoremap <silent> <F5> :GundoToggle<CR>
 let g:syntastic_php_checkers=['php', 'phpmd']
 let g:syntastic_python_checkers=['python', 'pyflakes']
 
-" Save & run a python script
-nnoremap <silent> <F6> :w <Bar> !python %<CR>
+" save & run a python or a C script
+autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
+autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!gcc % -o %:r -Wall <Bar> ./%:r<cr>
