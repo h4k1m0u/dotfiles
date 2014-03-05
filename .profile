@@ -20,7 +20,7 @@ test -z "$PROFILEREAD" && . /etc/profile || true
  
 # author h4k1m
 # Export Ant
-export ANT_HOME=/opt/apache-ant-1.9.1
+# export ANT_HOME=/opt/apache-ant-1.9.1
 
 # Add android to path
-export PATH=$PATH:${ANT_HOME}/bin:/opt/adt-bundle-linux-x86-20130219/sdk/platform-tools:/opt/adt-bundle-linux-x86-20130219/sdk/tools
+# export PATH=$PATH:${ANT_HOME}/bin:/opt/adt-bundle-linux-x86-20130219/sdk/platform-tools:/opt/adt-bundle-linux-x86-20130219/sdk/tools
