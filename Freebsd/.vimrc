@@ -1,7 +1,9 @@
 " vim
 syntax on
+filetype indent on
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set hlsearch
 set number
 nnoremap ; :
@@ -21,6 +23,9 @@ nnoremap <silent> <C-c> :bd!<CR>
 let g:NERDTreeDirArrows=0
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <C-O> :NERDTree %<CR>
+
+" tagbar
+nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " save & run a python | C | nodejs script
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
