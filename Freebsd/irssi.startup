@@ -1,0 +1,4 @@
+/server add -auto -network fn irc.freenode.net 6667 <password>
+/network add -nick h4k1m fn
+/channel add -auto #freebsd fn
+/set window_auto_change ON
