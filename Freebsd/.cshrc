@@ -6,10 +6,6 @@
 # more examples available at /usr/share/examples/csh/
 #
 
-# h4k1m: set lang
-setenv LANG en_US.UTF-8
-setenv CHARSET UTF-8
-
 alias h		history 25
 alias j		jobs -l
 alias la	ls -aF
