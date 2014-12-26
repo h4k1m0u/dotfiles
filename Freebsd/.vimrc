@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set hlsearch
 set number
+cnoremap w w!
 nnoremap ; :
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
