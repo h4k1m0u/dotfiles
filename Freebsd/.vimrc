@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set hlsearch
 set number
+let mapleader = ","
 cnoremap w w!
 nnoremap ; :
 nnoremap <C-H> <C-W>h
@@ -27,6 +28,9 @@ nnoremap <silent> <C-O> :NERDTree %<CR>
 
 " tagbar
 nnoremap <silent> <F4> :TagbarToggle<CR>
+
+" ctrlp
+nnoremap <silent> <leader>f :CtrlPCurWD<CR>
 
 " save & run a python | C | nodejs script
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
