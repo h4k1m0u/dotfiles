@@ -7,7 +7,7 @@ set expandtab
 set hlsearch
 set number
 let mapleader = ","
-cnoremap w w!
+nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
