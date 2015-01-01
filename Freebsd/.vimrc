@@ -9,10 +9,10 @@ set number
 let mapleader = ","
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
-nnoremap <leader>q <C-W>h
-nnoremap <leader>r <C-W>l
-nnoremap <leader>w <C-W>j
-nnoremap <leader>e <C-W>k
+nnoremap <leader>h <C-W>h
+nnoremap <leader>l <C-W>l
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
 
 " plugins
 execute pathogen#infect()
