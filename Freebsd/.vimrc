@@ -39,5 +39,5 @@ nnoremap <leader>a :Ack
 
 " save & run a python | C | nodejs script
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
-autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall -lm && ./%:r<cr>
+autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r.o -Wall -lm && ./%:r.o<cr>
 autocmd FileType javascript nnoremap <buffer> <F6> :w <Bar> :!node %<cr>
