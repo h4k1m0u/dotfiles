@@ -11,6 +11,9 @@ if (-r /usr/local/lib/profiles/CSHRC ) source /usr/local/lib/profiles/CSHRC
 # h4k1m: custom prompt
 set prompt='%{\033[1;32m%}%n@%m %{\033[1;31m%}%~ $%{\033[0;37m%} '
 
+# h4k1m: support vim colorschemes
+set term=xterm-256color
+
 # Override the default printer and uncomment below:
 # setenv PRINTER your_choice_here
 # setenv LPDEST $PRINTER
