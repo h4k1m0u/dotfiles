@@ -41,3 +41,6 @@ nnoremap <leader>a :Ack
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r.o -Wall -lm && ./%:r.o<cr>
 autocmd FileType javascript nnoremap <buffer> <F6> :w <Bar> :!node %<cr>
+
+" xml beautify
+command Xmlbeautify :%s/></>\r</g <Bar> :norm gg=G
