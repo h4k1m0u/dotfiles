@@ -35,34 +35,44 @@ $ ping -c 3 google.com
 $ pacstrap /mnt base
 ```
 
-If you have trouble with key signatures:
+- If you have trouble with key signatures:
 ```sh
 $ vim /etc/pacman.conf
 SigLevel = Never
 ```
 
 # Generate fstab
-The partition containing `Archlinux` needs to be mounted automatically at boot time with `fstab`:
+- The partition containing `Archlinux` needs to be mounted automatically at boot time with `fstab`:
 ```sh
 $ genfstab /mnt >> /mnt/etc/fstab
 $ cat /mnt/etc/fstab
 ```
 
 # Install GRUB bootloader
-We need to `chroot` first into the mounted partition:
+- We need to `chroot` first into the mounted partition:
 ```sh
 $ arch-chroot /mnt /bin/bash
 ```
 
-Then install the `GRUB` bootloader package:
+- Then install the `GRUB` bootloader package:
 ```sh
 $ pacman -S grub os-prober
 ```
 
-And finally, `GRUB` needs to be configured:
+- And finally, `GRUB` needs to be configured:
 ```sh
 $ grub-install /dev/sda
 $ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+# Install wireless manager
+```sh
+$ pacman -S dialog wifi-supplicant
+```
+
+- And then connect to the wifi as usual with:
+```sh
+$ wifi-menu <interface-name>
 ```
 
 # Reboot the machine
