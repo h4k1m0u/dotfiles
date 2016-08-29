@@ -65,16 +65,6 @@ $ grub-install /dev/sda
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-# Install wireless manager
-```sh
-$ pacman -S dialog wifi-supplicant
-```
-
-- And then connect to the wifi as usual with:
-```sh
-$ wifi-menu <interface-name>
-```
-
 # Reboot the machine
 ```sh
 $ exit
