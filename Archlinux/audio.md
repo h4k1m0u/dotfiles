@@ -28,13 +28,11 @@ $ pacman -S pulseaudio-bluetooth
 $ systemctl start bluetooth
 ```
 
-## Install the bluetooth manager
+## Pairing using a bluetooth manager
+
+### Using the command-line
 ```sh
 $ pacman -S bluez bluez-utils
-```
-
-## Pair with the bluetooth device
-```sh
 $ bluetoothctl
 ```
 
@@ -46,4 +44,10 @@ $ default-agent
 $ scan on
 $ pair <mac-addresss>
 $ connect <mac-address>
+```
+
+### Using the GUI
+```sh
+$ pacman -S blueman
+$ blueman-applet
 ```
