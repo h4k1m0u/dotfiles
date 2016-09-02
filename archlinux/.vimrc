@@ -11,3 +11,4 @@ nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>

@@ -154,3 +154,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# move workspace to left and right monitors
+bindsym $mod+Shift+bracketleft move workspace to output left
+bindsym $mod+Shift+bracketright move workspace to output right
