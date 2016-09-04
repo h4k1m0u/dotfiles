@@ -92,10 +92,11 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+# hakim: rename workspaces
+bindsym $mod+1 workspace 1:Terminal
+bindsym $mod+2 workspace 2:Browser
+bindsym $mod+3 workspace 3:Audio
+bindsym $mod+4 workspace 4:Mail
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -104,10 +105,11 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+# hakim: rename workspaces
+bindsym $mod+Shift+1 move container to workspace 1:Terminal
+bindsym $mod+Shift+2 move container to workspace 2:Browser
+bindsym $mod+Shift+3 move container to workspace 3:Audio
+bindsym $mod+Shift+4 move container to workspace 4:Mail
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -155,6 +157,26 @@ bar {
         status_command i3status
 }
 
-# move workspace to left and right monitors
+# hakim: move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
+
+# hakim: applications to start on boot
+exec dropbox
+exec blueman-applet
+exec terminator
+exec firefox
+exec pavucontrol
+exec thunderbird
+
+# hakim: assign application to specific workspace
+assign[class="^Terminator$"] 1:Terminal
+assign[class="^Firefox$"] 2:Browser
+assign[class="^Pavucontrol$"] 3:Audio
+assign[class="^Thunderbird$"] 4:Mail
+
+# hakim: assign workspace to specific monitor (name of monitors retrieved with `$ xrandr`)
+workspace 1:Terminal output eDP-1
+workspace 2:Browser output HDMI-1
+workspace 3:Audio output HDMI-1
+workspace 4:Mail output HDMI-1
