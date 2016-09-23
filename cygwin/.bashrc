@@ -4,6 +4,8 @@
 # aliases
 alias ll='ls -alh'
 alias ..='cd ..'
+alias generate-solution='cmake .. -G "Visual Studio 12 2013 Win64"'
+alias build-solution='cmake --build bin --config Release'
 
 # fortunes
 fortune
