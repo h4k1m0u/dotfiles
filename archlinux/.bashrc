@@ -1,5 +1,6 @@
 # author h4k1m
 # executed on each interactive shell
+cd ~/github/bookquotes
 
 # aliases
 alias ll='ls -alh'

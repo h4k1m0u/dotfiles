@@ -29,6 +29,9 @@ let g:NERDTreeDirArrows=0
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>o :NERDTree %<CR>
 
+" ack
+nnoremap <leader>a :Ack 
+
 " run scripts
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r.o -Wall -lm && ./%:r.o<cr>
