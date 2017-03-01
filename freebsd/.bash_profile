@@ -11,4 +11,4 @@ export PATH=$PATH:/home/hakim/bin
 export EDITOR=/usr/local/bin/vim
 
 # fortunes
-/usr/games/fortune freebsd-tips
+/usr/bin/fortune freebsd-tips
