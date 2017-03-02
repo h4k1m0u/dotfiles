@@ -46,3 +46,27 @@ And add `postgresql_enable="YES"`
 - **Upload created backup to server:** `scp backup.sql remote_user@remote_host:backup.sql`
 - **Execute backup script on server:** `psql <database> <user> < backup.sql`
 - **Verify database on server:** `psql <database> <user>`
+
+## Configure gunicorn & Nginx to serve the Django application
+- **Install gunicorn & nginx:** `pip install gunicorn && pkg install nginx`
+- **Add domain name to allowed hosts & disable debug:** `vim <project>/settings.vim`
+
+And add the following
+```python
+DEBUG = False
+ALLOWED_HOSTS = ['domain-name']
+```
+- **Test that gunicorn is working:** `gunicorn --bind 0.0.0.0:8000 <project>.wsgi:application`
+- **Copy unicorn service to rc.d folder:** `cp ./gunicorn /usr/local/etc/rc.d/`
+- **Change permissions of unicorn service:** `chmod 555 gunicorn`
+- **Run gunicorn & nginx services at startup:** `vim /etc/rc.conf`
+
+And add:
+```sh
+gunicorn_enable="YES"
+nginx_enable="YES"
+```
+- **Add vhost to nginx.conf:** `vim ./nginx.conf`
+
+And put its content at the end of `/usr/local/etc/nginx/nginx.conf`.
+- **Start gunicorn & nginx services:** `service gunicorn start && service nginx start`

@@ -1,0 +1,21 @@
+#!/bin/sh
+# hakim: Gunicorn service
+# source: http://stackoverflow.com/q/15646797/2228912
+
+
+# PROVIDE: gunicorn
+
+. /etc/rc.subr
+
+# name of the service, its knob, and its pid file
+name=gunicorn
+rcvar=gunicorn_enable
+pidfile="/var/run/${name}.pid"
+
+# gunicorn command: set gunicorn working directory and user/group
+command="/usr/local/bin/gunicorn"
+command_args="--chdir /home/freebsd/bookquotes --user www --group www --bind unix:/home/freebsd/bookquotes/bookquotes.sock bookquotes.wsgi:application"
+
+# run service
+load_rc_config $name
+run_rc_command "$1"
