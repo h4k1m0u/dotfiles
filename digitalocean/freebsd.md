@@ -48,7 +48,9 @@ And add `postgresql_enable="YES"`
 - **Verify database on server:** `psql <database> <user>`
 
 ## Configure gunicorn & Nginx to serve the Django application
-- **Install gunicorn & nginx:** `pip install gunicorn && pkg install nginx`
+- **Install nginx:** `pkg install nginx`
+- **Install gunicorn:** `pip install gunicorn`
+- **Install supervisord:** `pkg install py27-supervisor`
 - **Add domain name to allowed hosts & disable debug:** `vim <project>/settings.vim`
 
 And add the following
@@ -57,16 +59,20 @@ DEBUG = False
 ALLOWED_HOSTS = ['domain-name']
 ```
 - **Test that gunicorn is working:** `gunicorn --bind 0.0.0.0:8000 <project>.wsgi:application`
-- **Copy unicorn service to rc.d folder:** `cp ./gunicorn /usr/local/etc/rc.d/`
-- **Change permissions of unicorn service:** `chmod 555 gunicorn`
-- **Run gunicorn & nginx services at startup:** `vim /etc/rc.conf`
-
-And add:
-```sh
-gunicorn_enable="YES"
-nginx_enable="YES"
-```
+- ~~**Copy unicorn service to rc.d folder:** `cp ./gunicorn /usr/local/etc/rc.d/`~~
+- ~~**Change permissions of unicorn service:** `chmod 555 gunicorn`~~
 - **Add vhost to nginx.conf:** `vim ./nginx.conf`
 
 And put its content at the end of `/usr/local/etc/nginx/nginx.conf`.
-- **Start gunicorn & nginx services:** `service gunicorn start && service nginx start`
+- **Add gunicorn command to supervisord.conf:** `vim ./supervisord.conf`
+
+And put its content at the end of `/usr/local/etc/supervisord.conf` (to allow supervisord to start/stop gunicorn automatically).
+- **Run nginx & supervisord services at startup:** `vim /etc/rc.conf`
+
+And add:
+```sh
+nginx_enable="YES"
+supervisord_enable="YES"
+```
+- **Start nginx service:** `service nginx start`
+- **Start supervisord service:** `service supervisord start`
