@@ -36,14 +36,27 @@ And add `postgresql_enable="YES"`
 - **Change postgres user password:** `sudo passwd postgres`
 - **Change shell to bash for postgres user:** `chsh -s bash`
 
-## Dump database to remote server
+## Create a database user
 - **Login with postgres user:** `sudo -u postgres -i`
 - **Login to postgres client on server:** `psql`
 - **Create a new user on server:** `CREATE USER <user>;`
 - **Make this user a superuser:** `ALTER ROLE <user> Superuser;`
-- **Create a database on server:** `CREATE DATABASE <database> OWNER <user>;`
+
+## Set database user password
+- **Open postgres client:** `psql <database> <user>`
+- **Set user's password:** `ALTER USER <user> WITH PASSWORD '<password>';`
+- **Verify encrypted password:** `SELECT * FROM pg_shadow;`
+- **Show location of configuration files:** `SHOW config_file;`
+- **Prevent connection without password on localhost:** `vim /var/db/postgres/data96/pg_hba.conf`
+
+And replace `trust` with `md5` in every entry of the file.
+
+- **Reload postgres service:** `service postgresql reload`
+
+## Dump database to remote server
 - **Dump backup locally:** `pg_dump <database> > backup.sql`
 - **Upload created backup to server:** `scp backup.sql remote_user@remote_host:backup.sql`
+- **Create a database on server:** `CREATE DATABASE <database> OWNER <user>;`
 - **Execute backup script on server:** `psql <database> <user> < backup.sql`
 - **Verify database on server:** `psql <database> <user>`
 
