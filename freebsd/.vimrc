@@ -9,6 +9,8 @@ set number
 let mapleader = ","
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>h <C-W>h
 nnoremap <leader>l <C-W>l
 nnoremap <leader>j <C-W>j

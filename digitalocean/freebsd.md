@@ -89,3 +89,42 @@ supervisord_enable="YES"
 ```
 - **Start nginx service:** `service nginx start`
 - **Start supervisord service:** `service supervisord start`
+
+## Backup postgresql database to Amazon S3
+- **Create an S3 bucket:** [Console](https://console.aws.amazon.com/)
+- **Enable versioning for this bucket** [Console](https://console.aws.amazon.com/)
+- **Create a user with programmatic access:** [IAM](https://console.aws.amazon.com/iam/home)
+- **Grant permissions by creating a user policy:** [IAM](https://console.aws.amazon.com/iam/home)
+
+The content of the policy can be found in [Backup policy](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/backup.json)
+- **Install wal-e with extra requirement aws:** `pip install wal-e[aws]`
+- **Install envdir:** `pkg install daemontools`
+- **Create a folder to store environment variables:** `mkdir -p wal-e/env`
+- **Put environment variables in separate files:**
+
+```sh
+$ echo 's3://<bucket>' > wal-e/env/WALE_S3_PREFIX
+$ echo '<access-key-id>' > wal-e/env/AWS_ACCESS_KEY_ID
+$ echo '<secret-access-key>' > wal-e/env/AWS_SECRET_ACCESS_KEY
+$ echo '<region>' > wal-e/env/AWS_REGION
+$ echo '<postgres-user-password>' > wal-e/env/PGPASSWORD
+```
+- **Change owner of environment variables directory:** `chown -R <postgres-user>:<postgres-user-group> wal-e`
+- **Enable continuous archiving in postgres with wal-e:** `vim /var/db/postgres/data96/postgresql.conf`
+
+And edit the following variables:
+```sh
+wal_level = archive
+archive_mode = on
+archive_command = '/usr/local/bin/envdir /home/freebsd/bookquotes/wal-e/env /usr/local/bin/wal-e wal-push %p'
+archive_timeout = 0
+```
+- **Install wal-e dependencies:** `pkg install lzop pv`
+- **Restart postgres service:** `service postgresql restart`
+
+`Wal-e` and `Postgresql` will start automatically the archiving of the databases because `archive_mode=on`.
+- **Change to postgres user:** `sudo su <postgres-user>`
+- **Open its cron file:** `crontab -e`
+- **Run weekly on Sunday midnight:**
+
+Copy content of [Cron](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/cron) inside the opened file.

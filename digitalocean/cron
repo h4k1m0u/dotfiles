@@ -1,0 +1,1 @@
+0 0 * * 0 /usr/local/bin/envdir /home/freebsd/bookquotes/wal-e/env /usr/local/bin/wal-e backup-push /var/db/postgres/data96
