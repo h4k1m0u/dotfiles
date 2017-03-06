@@ -8,6 +8,5 @@ $ pacman -S python-numpy
 $ wget https://aur.archlinux.org/cgit/aur.git/snapshot/python-mvpa2-git.tar.gz
 $ tar -zxvf python-mvpa2-git.tar.gz
 $ cd python-mvpa2-git
-$ makepkg -sc
-$ pacman -U python-mvpa2-git-[xxx].pkg.tar.xz
+$ makepkg -sci
 ```

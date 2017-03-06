@@ -92,14 +92,14 @@ supervisord_enable="YES"
 
 ## Backup postgresql database to Amazon S3
 - **Create an S3 bucket:** [Console](https://console.aws.amazon.com/)
-- **Enable versioning for this bucket** [Console](https://console.aws.amazon.com/)
+- **Enable bucket versionning:** [Console](https://console.aws.amazon.com/)
 - **Create a user with programmatic access:** [IAM](https://console.aws.amazon.com/iam/home)
 - **Grant permissions by creating a user policy:** [IAM](https://console.aws.amazon.com/iam/home)
 
 The content of the policy can be found in [Backup policy](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/backup.json)
 - **Install wal-e with extra requirement aws:** `pip install wal-e[aws]`
 - **Install envdir:** `pkg install daemontools`
-- **Create a folder to store environment variables:** `mkdir -p wal-e/env`
+- **Create a folder to store environment variables:** `mkdir -p /usr/local/etc/wal-e/env`
 - **Put environment variables in separate files:**
 
 ```sh
@@ -116,15 +116,33 @@ And edit the following variables:
 ```sh
 wal_level = archive
 archive_mode = on
-archive_command = '/usr/local/bin/envdir /home/freebsd/bookquotes/wal-e/env /usr/local/bin/wal-e wal-push %p'
+archive_command = 'envdir /usr/local/etc/wal-e/env wal-e wal-push %p'
 archive_timeout = 0
+
+logging_collector = on
+log_directory = 'pg_log'
 ```
 - **Install wal-e dependencies:** `pkg install lzop pv`
 - **Restart postgres service:** `service postgresql restart`
 
 `Wal-e` and `Postgresql` will start automatically the archiving of the databases because `archive_mode=on`.
 - **Change to postgres user:** `sudo su <postgres-user>`
-- **Open its cron file:** `crontab -e`
+- **Test push command:** `envdir /usr/local/etc/wal-e/env wal-e backup-push /var/db/postgres/data96`
+- **Open postgres user's cron file:** `crontab -e`
 - **Run weekly on Sunday midnight:**
 
 Copy content of [Cron](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/cron) inside the opened file.
+
+## Restore postgresql database from Amazon S3
+- **Shutdown postgres:** `service postgresql stop`
+- **Rename old postgres directory:** `mv <postgres-dir> <old-postgres-dir>`
+- **Init new database:** `sudo service postgresql initdb`
+- **Fetch latest backup:** `envdir /usr/local/etc/wal-e/env wal-e backup-fetch /var/db/postgres/<postgres-dir> LATEST`
+- **Configure fetch command in postgres:** `vim <postgres-dir>/recovery.conf`
+
+And add the following:
+```sh
+restore_command = 'envdir /usr/local/etc/wal-e/env wal-e wal-fetch "%f" "%p"'
+```
+- **Copy postgres configuration files with archiving enabled:** `cp <old-postgres-dir>/{postgresql.conf,pg_hba.conf} <postgres-dir>`
+- **Recover backup on postgresql startup:** `service postgresql start`
