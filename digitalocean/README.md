@@ -72,8 +72,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['domain-name']
 ```
 - **Test that gunicorn is working:** `gunicorn --bind 0.0.0.0:8000 <project>.wsgi:application`
-- ~~**Copy unicorn service to rc.d folder:** `cp ./gunicorn /usr/local/etc/rc.d/`~~
-- ~~**Change permissions of unicorn service:** `chmod 555 gunicorn`~~
 - **Add vhost to nginx.conf:** `vim ./nginx.conf`
 
 And put its content at the end of `/usr/local/etc/nginx/nginx.conf`.
