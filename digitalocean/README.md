@@ -126,10 +126,13 @@ log_directory = 'pg_log'
 `Wal-e` and `Postgresql` will start automatically the archiving of the databases because `archive_mode=on`.
 - **Change to postgres user:** `sudo su <postgres-user>`
 - **Test push command:** `envdir /usr/local/etc/wal-e/env wal-e backup-push /var/db/postgres/data96`
+- **Test delete command:** `envdir /usr/local/etc/wal-e/env wal-e delete --confirm retain 1`
 - **Open postgres user's cron file:** `crontab -e`
 - **Run weekly on Sunday midnight:**
 
 Copy content of [Cron](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/cron) inside the opened file.
+
+Note that this cron file also deletes older backups to keep only the most recent one (The one just uploaded).
 
 ## Restore postgresql database from Amazon S3
 - **Shutdown postgres:** `service postgresql stop`
