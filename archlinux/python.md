@@ -10,3 +10,11 @@ $ tar -zxvf python-mvpa2-git.tar.gz
 $ cd python-mvpa2-git
 $ makepkg -sci
 ```
+
+# Create a virtual environment (e.g. to use python2)
+```sh
+$ pip install virtualenv
+$ virtualenv --python=python2 .
+$ source bin/activate
+$ python --version
+```
