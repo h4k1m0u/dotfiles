@@ -30,6 +30,7 @@ The default user `freebsd` does already belong to the `wheel` group (i.e. `sudoe
 - **Load postgresql service at startup:** `vim /etc/rc.conf`
 
 And add `postgresql_enable="YES"`
+
 - **Initialize postgresql database:** `sudo service postgresql initdb`
 - **Start postgresql service:** `sudo service postgresql start`
 - **Check that postgresql service is running:** `sudo service postgresql status`
@@ -75,9 +76,11 @@ ALLOWED_HOSTS = ['domain-name']
 - **Add vhost to nginx.conf:** `vim ./nginx.conf`
 
 And put its content at the end of `/usr/local/etc/nginx/nginx.conf`.
+
 - **Add gunicorn command to supervisord.conf:** `vim ./supervisord.conf`
 
 And put its content at the end of `/usr/local/etc/supervisord.conf` (to allow supervisord to start/stop gunicorn automatically).
+
 - **Run nginx & supervisord services at startup:** `vim /etc/rc.conf`
 
 And add:
@@ -95,6 +98,7 @@ supervisord_enable="YES"
 - **Grant permissions by creating a user policy:** [IAM](https://console.aws.amazon.com/iam/home)
 
 The content of the policy can be found in [Backup policy](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/backup.json)
+
 - **Install wal-e with extra requirement aws:** `pip install wal-e[aws]`
 - **Install envdir:** `pkg install daemontools`
 - **Create a folder to store environment variables:** `mkdir -p /usr/local/etc/wal-e/env`
@@ -124,6 +128,7 @@ log_directory = 'pg_log'
 - **Restart postgres service:** `service postgresql restart`
 
 `Wal-e` and `Postgresql` will start automatically the archiving of the databases because `archive_mode=on`.
+
 - **Change to postgres user:** `sudo su <postgres-user>`
 - **Test push command:** `envdir /usr/local/etc/wal-e/env wal-e backup-push /var/db/postgres/data96`
 - **Test delete command:** `envdir /usr/local/etc/wal-e/env wal-e delete --confirm retain 1`
