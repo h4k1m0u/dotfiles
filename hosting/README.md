@@ -64,7 +64,7 @@ And replace `trust` with `md5` in every entry of the file.
 ## Configure gunicorn & Nginx to serve the Django application
 - **Install nginx:** `pkg install nginx`
 - **Install gunicorn:** `pip install gunicorn`
-- **Install supervisord:** `pkg install py27-supervisor`
+- **Install supervisord:** `pacman -S supervisor`
 - **Add domain name to allowed hosts & disable debug:** `vim <project>/settings.vim`
 
 And add the following
@@ -73,23 +73,16 @@ DEBUG = False
 ALLOWED_HOSTS = ['domain-name']
 ```
 - **Test that gunicorn is working:** `gunicorn --bind 0.0.0.0:8000 <project>.wsgi:application`
-- **Add vhost to nginx.conf:** `vim ./nginx.conf`
+- **Add vhost to nginx.conf:**
 
-And put its content at the end of `/usr/local/etc/nginx/nginx.conf`.
+`vim ./nginx.conf`, and put its content at the end of `/etc/nginx/nginx.conf`.
 
-- **Add gunicorn command to supervisord.conf:** `vim ./supervisord.conf`
+- **Add gunicorn command to supervisord configuration files:**
 
-And put its content at the end of `/usr/local/etc/supervisord.conf` (to allow supervisord to start/stop gunicorn automatically).
+`vim ./supervisord.ini`, and put its content in a new file located in `/etc/supervisor.d/`, to allow supervisord to start/stop gunicorn automatically.
 
-- **Run nginx & supervisord services at startup:** `vim /etc/rc.conf`
-
-And add:
-```sh
-nginx_enable="YES"
-supervisord_enable="YES"
-```
-- **Start nginx service:** `service nginx start`
-- **Start supervisord service:** `service supervisord start`
+- **Run nginx & supervisord services at startup:** `systemctl enable nginx supervisord`
+- **Start nginx & supervisord services:** `systemctl start nginx supervisord`
 
 ## Backup postgresql database to Amazon S3
 - **Create an S3 bucket:** [Console](https://console.aws.amazon.com/)
