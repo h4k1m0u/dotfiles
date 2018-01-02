@@ -28,3 +28,18 @@ $ ssh user@remote
 $ systemctl start sshd
 $ systemctl enable sshd
 ```
+
+# Secure the SSH server
+Open `/etc/ssh/sshd_config` and edit the following options:
+
+- Disallow root login:
+
+```sh
+PermitRootLogin no
+```
+
+- Disable password authentication:
+
+```sh
+PasswordAuthentication no
+```
