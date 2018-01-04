@@ -81,6 +81,14 @@ ALLOWED_HOSTS = ['domain-name']
 
 `vim ./supervisord.ini`, and put its content in a new file located in `/etc/supervisor.d/`, to allow supervisord to start/stop gunicorn automatically.
 
+- **Change permissions of the home folder:**
+
+The project folder as well as its parents directories need to have a `755` permissions, so that `nginx` can have access to it to serve static files. This means that if the project is in `/home/hakim`, the permissions of this latter directory should also be `755`:
+
+```sh
+$ chmod 755 /home/hakim
+```
+
 - **Run nginx & supervisord services at startup:** `systemctl enable nginx supervisord`
 - **Start nginx & supervisord services:** `systemctl start nginx supervisord`
 
