@@ -93,15 +93,17 @@ $ chmod 755 /home/hakim
 - **Start nginx & supervisord services:** `systemctl start nginx supervisord`
 
 ## Backup postgresql database to Amazon S3
+It should be noted that both this section and the next one have worked with `PostgreSQL10` on `ArchLinux`.
+
 - **Create an S3 bucket:** [Console](https://console.aws.amazon.com/)
 - **Enable bucket versionning:** [Console](https://console.aws.amazon.com/)
 - **Create a user with programmatic access:** [IAM](https://console.aws.amazon.com/iam/home)
 - **Grant permissions by creating a user policy:** [IAM](https://console.aws.amazon.com/iam/home)
 
-The content of the policy can be found in [Backup policy](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/backup.json)
+The content of the policy can be found in [Backup policy](https://bitbucket.org/h4k1m0u/dotfiles/src/master/hosting/backup.json)
 
 - **Install wal-e with extra requirement aws:** `pip install wal-e[aws]`
-- **Install envdir:** `pkg install daemontools`
+- **Install envdir from AUR:** `pacaur -S daemontools`
 - **Create a folder to store environment variables:** `mkdir -p /usr/local/etc/wal-e/env`
 - **Put environment variables in separate files:**
 
@@ -113,7 +115,7 @@ $ echo '<region>' > wal-e/env/AWS_REGION
 $ echo '<postgres-user-password>' > wal-e/env/PGPASSWORD
 ```
 - **Change owner of environment variables directory:** `chown -R <postgres-user>:<postgres-user-group> wal-e`
-- **Enable continuous archiving in postgres with wal-e:** `vim /var/db/postgres/data96/postgresql.conf`
+- **Enable continuous archiving in postgres with wal-e:** `vim /var/lib/postgres/data/postgresql.conf`
 
 And edit the following variables:
 ```sh
@@ -125,31 +127,42 @@ archive_timeout = 0
 logging_collector = on
 log_directory = 'pg_log'
 ```
-- **Install wal-e dependencies:** `pkg install lzop pv`
-- **Restart postgres service:** `service postgresql restart`
+- **Install wal-e dependencies:** `pacman -S lzop pv`
+- **Restart postgres service:** `systemctl restart postgresql`
 
 `Wal-e` and `Postgresql` will start automatically the archiving of the databases because `archive_mode=on`.
 
-- **Change to postgres user:** `sudo su <postgres-user>`
-- **Test push command:** `envdir /usr/local/etc/wal-e/env wal-e backup-push /var/db/postgres/data96`
+- **Change to postgres user:** `sudo -u <postgres-user> -i`
+- **Test push command:** `envdir /usr/local/etc/wal-e/env wal-e backup-push /var/lib/postgres/data`
 - **Test delete command:** `envdir /usr/local/etc/wal-e/env wal-e delete --confirm retain 1`
 - **Open postgres user's cron file:** `crontab -e`
 - **Run weekly on Sunday midnight:**
 
-Copy content of [Cron](https://github.com/h4k1m0u/dotfiles/tree/master/digitalocean/cron) inside the opened file.
+Copy content of [Cron](https://bitbucket.org/h4k1m0u/dotfiles/src/master/hosting/cron) inside the opened file.
 
 Note that this cron file also deletes older backups to keep only the most recent one (The one just uploaded).
 
 ## Restore postgresql database from Amazon S3
-- **Shutdown postgres:** `service postgresql stop`
+- **Shutdown postgres:** `systemctl stop postgresql`
+- **Change to postgres user:** `sudo -u <postgres-user> -i`
 - **Rename old postgres directory:** `mv <postgres-dir> <old-postgres-dir>`
-- **Init new database:** `sudo service postgresql initdb`
-- **Fetch latest backup:** `envdir /usr/local/etc/wal-e/env wal-e backup-fetch /var/db/postgres/<postgres-dir> LATEST`
+- **Init new database:** `initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data'`
+- **Fetch latest backup:** `envdir /usr/local/etc/wal-e/env wal-e backup-fetch /var/lib/postgres/<postgres-dir> LATEST`
 - **Configure fetch command in postgres:** `vim <postgres-dir>/recovery.conf`
 
 And add the following:
 ```sh
 restore_command = 'envdir /usr/local/etc/wal-e/env wal-e wal-fetch "%f" "%p"'
 ```
-- **Copy postgres configuration files with archiving enabled:** `cp <old-postgres-dir>/{postgresql.conf,pg_hba.conf} <postgres-dir>`
-- **Recover backup on postgresql startup:** `service postgresql start`
+
+- **Copy postgres configuration files with archiving enabled:** `cp <old-postgres-dir>/postgresql.conf <postgres-dir>`
+- **Recover backup on postgresql startup:** `systemctl start postgresql`
+
+After this command the remote database will be recovered locally and can be read normally.
+
+- **Update the sitename on Django:** If we're recovering the remote database locally, we need to update the sitename in `Django` to match the local URL which is different from the remote one:
+
+```python
+from django.contrib.sites.models import Site
+Site.objects.create(domain='gistutorials.loc', name='gistutorials.loc')
+```

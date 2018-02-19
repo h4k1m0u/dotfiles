@@ -1,2 +1,2 @@
 # Sunday midnight: Backup current database & remove older backups
-0 0 * * 1 envdir /usr/local/etc/wal-e/env wal-e backup-push /var/db/postgres/data96 && envdir /usr/local/etc/wal-e/env wal-e delete --confirm retain 1
+0 0 * * 1 envdir /usr/local/etc/wal-e/env wal-e backup-push /var/lib/postgres/data && envdir /usr/local/etc/wal-e/env wal-e delete --confirm retain 1
