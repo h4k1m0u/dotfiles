@@ -1,0 +1,5 @@
+# ~/.irssi/startup file
+/server add -auto -network fn irc.freenode.net 6667 <password>
+/network add -nick h4k1m0u fn
+/channel add -auto #archlinux fn
+/set window_auto_change ON
