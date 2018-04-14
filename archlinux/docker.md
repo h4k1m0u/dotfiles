@@ -1,0 +1,3 @@
+- Retrieve image: `docker pull ubuntu`
+- Create container: `docker run -ti --name ubuntu ubuntu`
+- Start container: `docker start -i ubuntu`
