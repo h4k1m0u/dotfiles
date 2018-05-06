@@ -165,13 +165,13 @@ bindsym $mod+Shift+bracketright move workspace to output right
 exec dropbox
 exec blueman-applet
 exec terminator
-exec firefox
+exec chromium
 exec pavucontrol
 exec thunderbird
 
 # hakim: assign application to specific workspace
 assign[class="^Terminator$"] 1:Terminal
-assign[class="^Firefox$"] 2:Browser
+assign[class="^Chromium$"] 2:Browser
 assign[class="^Pavucontrol$"] 3:Audio
 assign[class="^Thunderbird$"] 4:Mail
 assign[class="^SNAP$"] 5:Apps

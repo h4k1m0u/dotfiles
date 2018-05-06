@@ -1,6 +1,6 @@
 # author h4k1m
 # executed on each interactive shell
-cd ~/repos/gistutorials-web
+cd ~/repos
 
 # aliases
 alias ll='ls -alh'
