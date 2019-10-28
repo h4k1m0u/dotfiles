@@ -13,3 +13,6 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>q :bd<CR>
 set autochdir
+
+" change color scheme
+colorscheme monokai
