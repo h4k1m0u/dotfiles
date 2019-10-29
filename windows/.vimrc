@@ -12,6 +12,7 @@ nnoremap ; :
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>q :bd<CR>
+xnoremap p "0p
 set autochdir
 
 " change font & color scheme
