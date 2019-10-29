@@ -14,5 +14,6 @@ nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>q :bd<CR>
 set autochdir
 
-" change color scheme
+" change font & color scheme
+set guifont=Consolas:h11:cANSI
 colorscheme monokai
