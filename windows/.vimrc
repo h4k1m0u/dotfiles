@@ -22,3 +22,7 @@ xnoremap p "0p
 " change font & color scheme
 set guifont=Consolas:h11:cANSI
 colorscheme monokai
+
+" UTF-8 encoding for decoding & output
+set encoding=utf-8
+set fileencoding=utf-8
