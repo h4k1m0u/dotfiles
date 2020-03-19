@@ -1,6 +1,10 @@
+" plugins
+execute pathogen#infect()
+let g:syntastic_python_checkers=['flake8']
+
 " vim
 syntax on
-filetype indent on
+filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -9,19 +13,17 @@ set number
 let mapleader = ","
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 nnoremap <leader>h <C-W>h
 nnoremap <leader>l <C-W>l
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
+nnoremap <leader>q :bd<CR>
+set autochdir
 
-" plugins
-execute pathogen#infect()
-
-" minibufexpl
-nnoremap <silent> <leader>n :enew<CR>
-nnoremap <silent> <leader>s :bp<CR>
-nnoremap <silent> <leader>d :bn<CR>
-nnoremap <silent> <leader>c :bd!<CR>
+" change font & color scheme
+colorscheme monokai
 
 " nerdtree
 let g:NERDTreeDirArrows=0
@@ -35,14 +37,12 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 nnoremap <silent> <leader>f :CtrlPCurWD<CR>
 
 " ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack<space>
 
-" save & run shell, python, C, nodejs scripts
-autocmd FileType sh nnoremap <buffer> <F6> :w <Bar> :!bash %<cr>
+" run scripts
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
-autocmd FileType python nnoremap <buffer> <F7> :w <Bar> :!py.test -v .<cr>
-autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r.o -Wall -lm && ./%:r.o<cr>
-autocmd FileType javascript nnoremap <buffer> <F6> :w <Bar> :!node %<cr>
+autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<cr>
 
-" xml beautify
-command Xmlbeautify :%s/></>\r</g <Bar> :norm gg=G
+" internship scripts
+let dir_3d_lib = "/home/hakim/repos/stage3d/2020_03_17/dpointclouds/lib"
+execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!g++ % -L" . dir_3d_lib . " -lcore -o %:r -Wall && ./%:r<cr>"
