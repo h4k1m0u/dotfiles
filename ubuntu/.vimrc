@@ -43,6 +43,5 @@ nnoremap <leader>a :Ack<space>
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<cr>
 
-" internship scripts
-let dir_3d_lib = "/home/hakim/repos/stage3d/2020_03_17/dpointclouds/lib"
-execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!g++ % -L" . dir_3d_lib . " -lcore -o %:r -Wall && ./%:r<cr>"
+" build cpp project with make
+execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make && echo && ./bin/%:r<cr>"
