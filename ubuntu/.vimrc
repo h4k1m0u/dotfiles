@@ -1,6 +1,5 @@
 " plugins
 execute pathogen#infect()
-let g:syntastic_python_checkers=['flake8']
 
 " vim
 syntax on
@@ -22,6 +21,21 @@ nnoremap <leader>k <C-W>k
 nnoremap <leader>q :bd<CR>
 set autochdir
 
+" comments
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+" navigation & line break
+nnoremap <leader>f <C-d>
+nnoremap <leader>b <C-u>
+xnoremap <leader>f <C-d>
+xnoremap <leader>b <C-u>
+nnoremap <leader>e i<CR><Esc>
+
+" use 0" register in visual mode instead of defaul one
+" https://stackoverflow.com/a/1504373/2228912
+xnoremap d "0d
+xnoremap p "0p
+
 " change font & color scheme
 colorscheme monokai
 
@@ -33,11 +47,11 @@ nnoremap <silent> <leader>o :NERDTree %<CR>
 " tagbar
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
-" ctrlp
-nnoremap <silent> <leader>f :CtrlPCurWD<CR>
-
 " ack
 nnoremap <leader>a :Ack<space>
+
+" ale linter: disable for cpp
+let g:ale_linters = {'cpp': []}
 
 " run scripts
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
