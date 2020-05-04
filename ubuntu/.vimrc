@@ -30,6 +30,10 @@ nnoremap <leader>b <C-u>
 xnoremap <leader>f <C-d>
 xnoremap <leader>b <C-u>
 nnoremap <leader>e i<CR><Esc>
+nnoremap <leader>r J
+
+" paste from system clipboard: apt install vim-gtk
+nnoremap <leader>v "*p
 
 " use 0" register in visual mode instead of defaul one
 " https://stackoverflow.com/a/1504373/2228912
