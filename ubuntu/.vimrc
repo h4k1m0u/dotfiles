@@ -33,7 +33,8 @@ nnoremap <leader>e i<CR><Esc>
 nnoremap <leader>r J
 
 " paste from system clipboard: apt install vim-gtk
-nnoremap <leader>v "*p
+nnoremap <leader>v "+p
+xnoremap <leader>v "+p
 
 " use 0" register in visual mode instead of defaul one
 " https://stackoverflow.com/a/1504373/2228912
@@ -56,6 +57,11 @@ nnoremap <leader>a :Ack<space>
 
 " ale linter: disable for cpp
 let g:ale_linters = {'cpp': []}
+
+" debugging
+tnoremap <Esc> <C-\><C-n>
+autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Termdebug ./%:r<cr>
+let g:termdebug_wide=1
 
 " run scripts
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
