@@ -21,6 +21,20 @@ nnoremap <leader>k <C-W>k
 nnoremap <leader>q :bd<CR>
 set autochdir
 
+" toggle split screen vertically between buffers
+let g:is_vsplit_close = 1
+nnoremap <F3> :call SplitScreenToggle()<CR>
+
+function! SplitScreenToggle()
+    if g:is_vsplit_close
+        execute "vertical belowright sbnext 1"
+        let g:is_vsplit_close = 0
+    else
+        execute "normal! \<C-w>c"
+        let g:is_vsplit_close = 1
+    endif
+endfunction
+
 " comments
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
@@ -58,12 +72,12 @@ nnoremap <leader>a :Ack<space>
 " ale linter: disable for cpp
 let g:ale_linters = {'cpp': []}
 
-" debugging
+" debugging with <F5>
 tnoremap <Esc> <C-\><C-n>
 autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Termdebug ./%:r<cr>
 let g:termdebug_wide=1
 
-" run scripts
+" run scripts with <F6>
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<cr>
 
