@@ -55,6 +55,10 @@ xnoremap <leader>v "+p
 xnoremap d "0d
 xnoremap p "0p
 
+" status bar
+set laststatus=2
+set statusline+=%F
+
 " change font & color scheme
 colorscheme monokai
 
@@ -68,6 +72,9 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " ack
 nnoremap <leader>a :Ack<space>
+
+" ctrlp
+nnoremap <silent> <leader>s :CtrlPCurWD<CR>
 
 " ale linter: disable for cpp
 let g:ale_linters = {'cpp': []}
