@@ -74,10 +74,20 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 nnoremap <leader>a :Ack<space>
 
 " ctrlp
-nnoremap <silent> <leader>s :CtrlPCurWD<CR>
+nnoremap <silent> <leader>s :CtrlPRoot<CR>
 
 " ale linter: disable for cpp
 let g:ale_linters = {'cpp': []}
+
+" youautocompleteme: disable linter & change shortcuts
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+
+" ultisnips with honza/vim-snippets: set shortcuts
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " debugging with <F5>
 tnoremap <Esc> <C-\><C-n>
