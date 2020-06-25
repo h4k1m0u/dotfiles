@@ -59,9 +59,6 @@ xnoremap p "0p
 set laststatus=2
 set statusline+=%F
 
-" change font & color scheme
-colorscheme monokai
-
 " nerdtree
 let g:NERDTreeDirArrows=0
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
@@ -77,6 +74,7 @@ nnoremap <leader>a :Ack<space>
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
 
 " ale linter: disable for cpp
+" let g:ale_linters = {'cpp': [], 'python': []}
 let g:ale_linters = {'cpp': []}
 
 " youautocompleteme: disable linter & change shortcuts
@@ -100,3 +98,7 @@ autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<
 
 " build cpp project with make
 execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make && echo && ./bin/%:r<cr>"
+
+" force filetype to js for html files (for syntax highlighting) & load custom js snippets
+autocmd BufNewFile,BufRead *.html set syntax=javascript filetype=javascript
+autocmd FileType javascript,html UltiSnipsAddFiletypes javascript-log

@@ -1,0 +1,13 @@
+snippet log "console.log (...)"
+console.log('$1 ', ${1:default text});
+endsnippet
+
+snippet logj "console.log (JSON.stringify(...))"
+console.log('$1 ', JSON.stringify(${1:default text}));
+endsnippet
+
+snippet func "function ... () { }"
+function ${1:myFunction}() {
+	$2
+}
+endsnippet
