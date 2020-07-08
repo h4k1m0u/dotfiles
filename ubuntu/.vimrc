@@ -99,6 +99,11 @@ autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<
 " build cpp project with make
 execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make && echo && ./bin/%:r<cr>"
 
-" force filetype to js for html files (for syntax highlighting) & load custom js snippets
-autocmd BufNewFile,BufRead *.html set syntax=javascript filetype=javascript
-autocmd FileType javascript,html UltiSnipsAddFiletypes javascript-log
+" change filetype for syntax highlighting
+autocmd BufNewFile,BufRead *.html set filetype=javascript
+au BufNewFile,BufRead *.ejs set filetype=html
+autocmd FileType javascript,html UltiSnipsAddFiletypes javascript-custom
+
+" use correct colorscheme in tmux
+set background=dark
+set t_Co=256
