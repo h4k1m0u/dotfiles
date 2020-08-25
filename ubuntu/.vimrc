@@ -20,6 +20,7 @@ nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>q :bd<CR>
 set autochdir
+set showcmd
 
 " toggle split screen vertically between buffers
 let g:is_vsplit_close = 1
@@ -72,6 +73,7 @@ nnoremap <leader>a :Ack<space>
 
 " ctrlp
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
+let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
 
 " ale linter: disable for cpp
 " let g:ale_linters = {'cpp': [], 'python': []}
@@ -107,3 +109,6 @@ autocmd FileType javascript,html UltiSnipsAddFiletypes javascript-custom
 " use correct colorscheme in tmux
 set background=dark
 set t_Co=256
+
+" check also subfolders for ctags
+set tags=tags;/
