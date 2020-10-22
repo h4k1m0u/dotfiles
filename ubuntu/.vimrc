@@ -4,8 +4,8 @@ execute pathogen#infect()
 " vim
 syntax on
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set hlsearch
 set number
@@ -46,6 +46,10 @@ xnoremap <leader>f <C-d>
 xnoremap <leader>b <C-u>
 nnoremap <leader>e i<CR><Esc>
 nnoremap <leader>r J
+
+" visual line & block selection
+nnoremap vvl <S-v>
+nnoremap vvb <c-v>
 
 " paste from system clipboard: apt install vim-gtk
 nnoremap <leader>v "+p
@@ -104,7 +108,7 @@ execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make &&
 " change filetype for syntax highlighting
 autocmd BufNewFile,BufRead *.html set filetype=javascript
 au BufNewFile,BufRead *.ejs set filetype=html
-autocmd FileType javascript,html UltiSnipsAddFiletypes javascript-custom
+autocmd FileType javascript,javascriptreact,html UltiSnipsAddFiletypes javascript-custom
 
 " use correct colorscheme in tmux
 set background=dark
