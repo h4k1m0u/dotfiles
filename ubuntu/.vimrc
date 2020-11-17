@@ -5,7 +5,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
+set autoindent
 set expandtab
 set hlsearch
 set number
@@ -87,6 +89,7 @@ let g:ale_linters = {'cpp': []}
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
+let g:ycm_clangd_args=['--header-insertion=never']
 
 " ultisnips with honza/vim-snippets: set shortcuts
 let g:UltiSnipsExpandTrigger="<c-j>"
