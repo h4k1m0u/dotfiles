@@ -86,7 +86,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\
 let g:ale_linters = {'cpp': []}
 
 " youautocompleteme: disable linter & change shortcuts
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 let g:ycm_clangd_args=['--header-insertion=never']
@@ -102,7 +102,7 @@ autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Te
 let g:termdebug_wide=1
 
 " run scripts with <F6>
-autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python %<cr>
+autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python3 %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<cr>
 
 " build cpp project with make
