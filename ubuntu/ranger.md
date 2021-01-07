@@ -1,0 +1,11 @@
+# Ranger shortcuts
+- **Select all/invert selection:** `v`
+- **Revert selection:** `uv`
+- **Show/hide hidden files:** `<backspace>`
+- **Bookmark current location:** `m` then `<key>`
+- **Show bookmarked paths:** `<backtick>` `<key>`
+- **Copy & paste folder:** `yy` then `pp`
+- **Cut & paste folder:** `dd` then `pp`
+- **Search by filename:** `/`
+- **Show files modification time:** `M` then `m`
+- **Last modified file at bottom:** `o` then `C`
