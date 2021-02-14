@@ -53,6 +53,10 @@ nnoremap <leader>r J
 nnoremap vvl <S-v>
 nnoremap vvb <c-v>
 
+" traverse block by block 
+noremap tj }
+noremap tk {
+
 " paste from system clipboard: apt install vim-gtk
 nnoremap <leader>v "+p
 xnoremap <leader>v "+p
@@ -81,9 +85,13 @@ nnoremap <leader>a :Ack<space>
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
 
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 " ale linter: disable for cpp
 " let g:ale_linters = {'cpp': [], 'python': []}
-let g:ale_linters = {'cpp': []}
+" let g:ale_linters = {'cpp': [], 'c': []}
 
 " youautocompleteme: disable linter & change shortcuts
 " let g:ycm_show_diagnostics_ui = 0
@@ -97,9 +105,9 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " debugging with <F5>
-tnoremap <Esc> <C-\><C-n>
-autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Termdebug ./%:r<cr>
-let g:termdebug_wide=1
+" tnoremap <Esc> <C-\><C-n>
+" autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Termdebug ./%:r<cr>
+" let g:termdebug_wide=1
 
 " run scripts with <F6>
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python3 %<cr>
@@ -112,6 +120,7 @@ execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make &&
 autocmd BufNewFile,BufRead *.html set filetype=javascript
 au BufNewFile,BufRead *.ejs set filetype=html
 autocmd FileType javascript,javascriptreact,html UltiSnipsAddFiletypes javascript-custom
+autocmd FileType cpp UltiSnipsAddFiletypes cpp-custom
 
 " use correct colorscheme in tmux
 set background=dark
