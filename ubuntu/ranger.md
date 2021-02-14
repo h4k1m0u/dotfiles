@@ -9,3 +9,7 @@
 - **Search by filename:** `/`
 - **Show files modification time:** `M` then `m`
 - **Last modified file at bottom:** `o` then `C`
+- **Go backward in history:** `H`
+- **Go forward in history:** `L`
+- **Create (close) a new tab:** `g` then `n` (`c`)
+- **Navigate to next (previous) tab:** `g` then `t` (`T`)
