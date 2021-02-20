@@ -12,4 +12,4 @@
 - **Go backward in history:** `H`
 - **Go forward in history:** `L`
 - **Create (close) a new tab:** `g` then `n` (`c`)
-- **Navigate to next (previous) tab:** `g` then `t` (`T`)
+- **Navigate to next (previous) tab:** `g` then `t` (`T`), or `tab` (`<S-tab>`)
