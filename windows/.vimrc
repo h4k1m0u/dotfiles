@@ -26,3 +26,17 @@ colorscheme monokai
 " UTF-8 encoding for decoding & output
 set encoding=utf-8
 set fileencoding=utf-8
+
+" navigation & line break
+nnoremap <leader>f <C-d>
+nnoremap <leader>b <C-u>
+xnoremap <leader>f <C-d>
+xnoremap <leader>b <C-u>
+
+" traverse block by block 
+noremap tj }
+noremap tk {
+
+" visual line & block selection
+nnoremap vvl <S-v>
+nnoremap vvb <c-v>
