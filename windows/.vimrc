@@ -40,3 +40,16 @@ noremap tk {
 " visual line & block selection
 nnoremap vvl <S-v>
 nnoremap vvb <c-v>
+
+" plugins
+" pathogen
+execute pathogen#infect()
+
+" nerdtree
+let g:NERDTreeDirArrows=0
+nnoremap <silent> <F2> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>o :NERDTree %<CR>
+
+" ctrlp
+nnoremap <silent> <leader>s :CtrlPRoot<CR>
+let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
