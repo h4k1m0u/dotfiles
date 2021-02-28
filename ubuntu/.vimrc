@@ -42,12 +42,8 @@ endfunction
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " navigation & line break
-nnoremap <leader>f <C-d>
-nnoremap <leader>b <C-u>
-xnoremap <leader>f <C-d>
-xnoremap <leader>b <C-u>
-nnoremap <leader>e i<CR><Esc>
-nnoremap <leader>r J
+noremap <leader>f <C-d>
+noremap <leader>b <C-u>
 
 " visual line & block selection
 nnoremap vvl <S-v>
@@ -119,6 +115,9 @@ execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make &&
 " change filetype for syntax highlighting
 autocmd BufNewFile,BufRead *.html set filetype=javascript
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.axaml set filetype=xml
+
+" Load custom snippets
 autocmd FileType javascript,javascriptreact,html UltiSnipsAddFiletypes javascript-custom
 autocmd FileType cpp UltiSnipsAddFiletypes cpp-custom
 

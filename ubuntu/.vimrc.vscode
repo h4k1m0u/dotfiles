@@ -1,0 +1,15 @@
+" save file
+nnoremap <silent> ,w :w!<CR>
+nnoremap ; :
+
+" navigation & line break
+noremap ,f <C-d>
+noremap ,b <C-u>
+
+" traverse block by block 
+noremap tj }
+noremap tk {
+
+" visual line & block selection
+nnoremap vvl V
+nnoremap vvb <c-v>
