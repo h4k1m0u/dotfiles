@@ -94,6 +94,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 let g:ycm_clangd_args=['--header-insertion=never']
+set completeopt-=preview
 
 " ultisnips with honza/vim-snippets: set shortcuts
 let g:UltiSnipsExpandTrigger="<c-j>"
