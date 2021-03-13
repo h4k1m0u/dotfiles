@@ -54,8 +54,10 @@ noremap tj }
 noremap tk {
 
 " paste from system clipboard: apt install vim-gtk
-nnoremap <leader>v "+p
-xnoremap <leader>v "+p
+nnoremap <leader>p "+p
+xnoremap <leader>p "+p
+nnoremap <leader>v "*p
+xnoremap <leader>v "*p
 
 " use 0" register in visual mode instead of defaul one
 " https://stackoverflow.com/a/1504373/2228912
@@ -89,12 +91,18 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 " let g:ale_linters = {'cpp': [], 'python': []}
 " let g:ale_linters = {'cpp': [], 'c': []}
 
-" youautocompleteme: disable linter & change shortcuts
+" youautocompleteme:
+" disable linter & change shortcuts
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 let g:ycm_clangd_args=['--header-insertion=never']
+
+" don't show upper window & trigger suggestions automatically
 set completeopt-=preview
+let g:ycm_semantic_triggers = {
+      \ 'c': ['re!\w{2}']
+      \ }
 
 " ultisnips with honza/vim-snippets: set shortcuts
 let g:UltiSnipsExpandTrigger="<c-j>"
