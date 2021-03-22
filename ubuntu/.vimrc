@@ -126,6 +126,10 @@ autocmd BufNewFile,BufRead *.html set filetype=javascript
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.axaml set filetype=xml
 
+" add license automatically to new cpp or py files
+autocmd BufNewFile *.cpp :0r ~/.vim/license-cpp.txt
+autocmd BufNewFile *.py :0r ~/.vim/license-py.txt
+
 " Load custom snippets
 autocmd FileType javascript,javascriptreact,html UltiSnipsAddFiletypes javascript-custom
 autocmd FileType cpp UltiSnipsAddFiletypes cpp-custom
