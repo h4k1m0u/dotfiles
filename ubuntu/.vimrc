@@ -104,6 +104,10 @@ let g:ycm_semantic_triggers = {
       \ 'c': ['re!\w{2}']
       \ }
 
+" ale: set path for clang linter to parse compile_commands.json (comes with ycm)
+let g:ale_c_cc_executable = '/home/hakim/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/clangd/output/bin/clangd'
+let g:ale_cpp_cc_executable = '/home/hakim/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/clangd/output/bin/clangd'
+
 " ultisnips with honza/vim-snippets: set shortcuts
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
