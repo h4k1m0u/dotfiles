@@ -76,8 +76,10 @@ nnoremap <silent> <leader>o :NERDTree %<CR>
 " tagbar
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
-" ack
-nnoremap <leader>a :Ack<space>
+" ack: search word in search register or under cursor
+" nnoremap <leader>a :Ack <C-r>/<CR>
+let g:searched_word = expand("<cword>")
+nnoremap <leader>a :execute ":Ack" . g:searched_word<CR>
 
 " ctrlp
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
