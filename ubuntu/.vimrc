@@ -73,7 +73,7 @@ let g:NERDTreeDirArrows=0
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>o :NERDTree %<CR>
 
-" tagbar
+" tagbar (fold/unfold subsections with <z,o>/<z,c>)
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " ack: search word in search register or under cursor
@@ -138,7 +138,7 @@ autocmd BufNewFile *.py :0r ~/.vim/license-py.txt
 
 " Load custom snippets
 autocmd FileType javascript,javascriptreact,html UltiSnipsAddFiletypes javascript-custom
-autocmd FileType cpp UltiSnipsAddFiletypes cpp-custom
+autocmd FileType c,cpp UltiSnipsAddFiletypes cpp-custom
 
 " use correct colorscheme in tmux
 set background=dark
