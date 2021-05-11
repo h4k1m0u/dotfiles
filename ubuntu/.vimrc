@@ -99,11 +99,12 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 let g:ycm_clangd_args=['--header-insertion=never']
+let g:ycm_clangd_binary_path='clangd'
 
 " don't show upper window & trigger suggestions automatically
 set completeopt-=preview
 let g:ycm_semantic_triggers = {
-      \ 'c': ['re!\w{2}']
+      \ 'c,cpp,python,js': ['re!\w{2}']
       \ }
 
 " ale: set path for clang linter to parse compile_commands.json (comes with ycm)
@@ -128,7 +129,7 @@ autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<
 execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make && echo && ./bin/%:r<cr>"
 
 " change filetype for syntax highlighting
-autocmd BufNewFile,BufRead *.html set filetype=javascript
+" autocmd BufNewFile,BufRead *.html set filetype=javascript
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.axaml set filetype=xml
 
