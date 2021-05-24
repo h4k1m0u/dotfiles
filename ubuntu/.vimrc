@@ -89,7 +89,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" ale linter: disable for cpp
+" ale
 " let g:ale_linters = {'cpp': [], 'python': []}
 " let g:ale_linters = {'cpp': [], 'c': []}
 
@@ -99,7 +99,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
 let g:ycm_clangd_args=['--header-insertion=never']
-let g:ycm_clangd_binary_path='clangd'
+let g:ycm_clangd_binary_path='clangd-12'
 
 " don't show upper window & trigger suggestions automatically
 set completeopt-=preview
