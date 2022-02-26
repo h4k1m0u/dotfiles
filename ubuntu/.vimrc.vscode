@@ -1,3 +1,5 @@
+set hlsearch
+
 " save file
 nnoremap <silent> ,w :w!<CR>
 nnoremap ; :

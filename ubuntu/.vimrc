@@ -90,7 +90,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " ale
-" let g:ale_linters = {'cpp': [], 'python': []}
+let g:ale_linters = {'python': []}
 " let g:ale_linters = {'cpp': [], 'c': []}
 
 " youautocompleteme:
