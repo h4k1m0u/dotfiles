@@ -1,3 +1,11 @@
+# Create a bootable USB
+```terminal
+$ sudo fdisk -l
+$ sudo umount /dev/sdb1  # recommended before `dd`
+$ sudo sudo mkfs.ext4 /dev/sdb1  # format filesystem
+$ sudo dd bs=4M status=progress if=./archlinux-2022.12.01-x86_64.iso of=/dev/sdb  # copy iso content to usb
+```
+
 # Partitionning
 - Create a `primary` partition and make it `bootable`:
 ```sh
