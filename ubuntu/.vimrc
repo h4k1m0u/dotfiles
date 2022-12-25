@@ -98,8 +98,10 @@ let g:ale_linters = {'python': []}
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<s-tab>', '<Up>']
-let g:ycm_clangd_args=['--header-insertion=never']
-let g:ycm_clangd_binary_path='clangd-12'
+
+" 11-12-22: commented as clangd bundled with ycm is v15
+" let g:ycm_clangd_args=['--header-insertion=never']
+" let g:ycm_clangd_binary_path='clangd-14'
 
 " don't show upper window & trigger suggestions automatically
 set completeopt-=preview
