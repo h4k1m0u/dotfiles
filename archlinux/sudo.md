@@ -8,6 +8,7 @@ $ passwd hakim
 # Add sudo privileges
 ```sh
 $ pacman -S sudo
+$ export EDITOR=vim
 $ visudo
 ```
 

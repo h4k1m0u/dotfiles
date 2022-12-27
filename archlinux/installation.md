@@ -1,46 +1,41 @@
+Following the official [installation guide][installation-guide] and [this tutorial][tutorial]:
+
+[installation-guide]: https://wiki.archlinux.org/title/Installation_guide
+[tutorial]: https://itsfoss.com/install-arch-linux/
+
 # Create a bootable USB
 ```terminal
 $ sudo fdisk -l
-$ sudo umount /dev/sdb1  # recommended before `dd`
-$ sudo sudo mkfs.ext4 /dev/sdb1  # format filesystem
-$ sudo dd bs=4M status=progress if=./archlinux-2022.12.01-x86_64.iso of=/dev/sdb  # copy iso content to usb
+$ sudo dd bs=4M status=progress if=./archlinux-2022.12.01-x86_64.iso of=/dev/sdb && sync  # copy iso content to usb & flush
 ```
 
 # Partitionning
-- Create a `primary` partition and make it `bootable`:
-```sh
-$ cfdisk
+- Boot into `UEFI without CSM` mode (not Legacy BIOS mode). If the boot mode is correct, the folder below should exist:
+```terminal
+$ ls /sys/firmware/efi/efivars
 ```
 
-- Change the partition's filesystem to `ext4`:
+- Using `cfdisk`:
+    - Create a boot `EFI` partition of 512M.
+    - Create a `primary` partition of the default `Linux` type.
+
+- Format both partitions as fat32 and ext4 filesystems resp.:
 ```sh
-$ mkfs.ext4 /dev/sda3
+$ mkfs.fat -F 32 /dev/sda1
+$ mkfs.ext4 /dev/sda2
 ```
 
-- Mount the created partition:
-```sh
-$ mount /dev/sda3 /mnt
-```
-
-# Enable wireless
-- Get the name of the wireless network interface:
+# Connect to wifi
 ```sh
 $ ip link
-```
-
-- Connect to the wifi:
-```sh
-$ wifi-menu <interface-name>
-```
-
-- Test the internet connection:
-```sh
+$ iwctl --passphrase <password> station <device> connect <ssid>
 $ ping -c 3 google.com
 ```
 
-# Install packages
+# Install Archlinux, kernel, and firmware
 ```sh
-$ pacstrap /mnt base
+$ mount /dev/sda2 /mnt
+$ pacstrap /mnt base linux linux-firmware
 ```
 
 - If you have trouble with key signatures:
@@ -52,8 +47,13 @@ SigLevel = Never
 # Generate fstab
 - The partition containing `Archlinux` needs to be mounted automatically at boot time with `fstab`:
 ```sh
-$ genfstab /mnt >> /mnt/etc/fstab
+$ genfstab -U /mnt >> /mnt/etc/fstab
 $ cat /mnt/etc/fstab
+```
+
+# Set root password
+```sh
+$ passwd
 ```
 
 # Install GRUB bootloader
@@ -64,19 +64,49 @@ $ arch-chroot /mnt /bin/bash
 
 - Then install the `GRUB` bootloader package:
 ```sh
-$ pacman -S grub os-prober
+$ pacman -S grub efibootmgr
 ```
 
 - And finally, `GRUB` needs to be configured:
 ```sh
-$ grub-install /dev/sda
+$ mkdir /boot/efi
+$ mount /dev/sda1 /boot/efi
+$ grub-install --target=x86_64-efi -bootloader-id=GRUB --efi-directory=/boot/efi
 $ grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+# Install desktop environment
+```terminal
+$ pacman -S xorg gnome
+$ systemctl enable gdm.service
+```
+
+# Install network manager
+```terminal
+$ pacman -S networkmanager
+$ systemctl enable NetworkManager.service
+$ nmtui  # used after reboot to connect to wifi
+```
+
+# Before rebooting
+```terminal
+$ sudo mount /dev/sda1 /boot/efi
+$ cd /boot/efi/
+$ ll EFI/GRUB/grubx64.efi  # path to provide in BIOS
 ```
 
 # Reboot the machine
 ```sh
 $ exit
-$ umount /mnt
+$ umount -l /mnt
 $ reboot
 ```
 
+# Configure BIOS
+As suggested in [this thread][askubuntu], to boot automatically on grub with HP laptops (without having to select GRUB), head to BIOS configuration:
+
+- Leave `UEFI without CSM` mode selected.
+- Make sure `Customize Boot` is checked and put it at the top of the boot order.
+- Define customized boot > Add, and set it to: `\EFI\GRUB\grubx64.efi`
+
+[askubuntu]: https://askubuntu.com/a/663388/146620
