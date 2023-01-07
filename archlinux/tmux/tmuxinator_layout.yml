@@ -1,0 +1,15 @@
+# Preconfigured tmux layout
+# located in `~/.config/tmuxinator/fps.yml`
+# started with `tmuxinator start tmuxinator_layout`
+name: fps
+root: ~/repos/first-person-shooter
+
+windows:
+  - vim:
+      layout: main-vertical
+      panes:
+        - vim src/main.cpp
+        - cd build
+  - ranger:
+      panes:
+        - ranger
