@@ -1,5 +1,5 @@
-" plugins
-execute pathogen#infect()
+" plugins to be installed to .vim/pack/plugins/start/
+" https://dev.to/iggredible/how-to-use-vim-packages-3gil
 
 " vim
 syntax on
@@ -76,11 +76,6 @@ nnoremap <silent> <leader>o :NERDTree %<CR>
 " tagbar (fold/unfold subsections with <z,o>/<z,c>)
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
-" ack: search word in search register or under cursor
-" nnoremap <leader>a :Ack <C-r>/<CR>
-let g:searched_word = expand("<cword>")
-nnoremap <leader>a :execute ":Ack" . g:searched_word<CR>
-
 " ctrlp
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
 let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
@@ -88,10 +83,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-" ale
-let g:ale_linters = {'python': []}
-" let g:ale_linters = {'cpp': [], 'c': []}
 
 " youautocompleteme:
 " disable linter & change shortcuts
@@ -109,31 +100,14 @@ let g:ycm_semantic_triggers = {
       \ 'c,cpp,python,js': ['re!\w{2}']
       \ }
 
-" ale: set path for clang linter to parse compile_commands.json (comes with ycm)
-let g:ale_c_cc_executable = '/home/hakim/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/clangd/output/bin/clangd'
-let g:ale_cpp_cc_executable = '/home/hakim/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/clangd/output/bin/clangd'
-
 " ultisnips with honza/vim-snippets: set shortcuts
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" debugging with <F5>
-" tnoremap <Esc> <C-\><C-n>
-" autocmd FileType cpp nnoremap <buffer> <F5> :w <Bar> :packadd termdebug <Bar> Termdebug ./%:r<cr>
-" let g:termdebug_wide=1
-
 " run scripts with <F6>
 autocmd FileType python nnoremap <buffer> <F6> :w <Bar> :!python3 %<cr>
 autocmd FileType c nnoremap <buffer> <F6> :w <Bar> :!cc % -o %:r -Wall && ./%:r<cr>
-
-" build cpp project with make
-execute "autocmd FileType cpp nnoremap <buffer> <F6> :w <Bar> :!cd .. && make && echo && ./bin/%:r<cr>"
-
-" change filetype for syntax highlighting
-" autocmd BufNewFile,BufRead *.html set filetype=javascript
-au BufNewFile,BufRead *.ejs set filetype=html
-au BufNewFile,BufRead *.axaml set filetype=xml
 
 " add license automatically to new cpp or py files
 autocmd BufNewFile *.cpp :0r ~/.vim/license-cpp.txt
