@@ -21,7 +21,7 @@ nnoremap <leader>l <C-W>l
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>q :bd<CR>
-set autochdir
+" set autochdir " commented 11-12-25: to make it easier to jump between files with `gf`
 set showcmd
 
 " toggle split screen vertically between buffers
@@ -69,9 +69,10 @@ set laststatus=2
 set statusline+=%F
 
 " nerdtree
-let g:NERDTreeDirArrows=0
+" CWD used as the root of the tree 
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>o :NERDTree %<CR>
+" reveal file for the active buffer
+nnoremap <silent> <leader>o :NERDTreeFind<CR>
 
 " tagbar (fold/unfold subsections with <z,o>/<z,c>)
 nnoremap <silent> <F4> :TagbarToggle<CR>
