@@ -78,8 +78,10 @@ nnoremap <silent> <leader>o :NERDTreeFind<CR>
 nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " ctrlp
+" 12-05-26: ripgrep already ignores hidden dirs like .git, and respects .gitignore (i.e. ignores files/dirs in .gitignore)
 nnoremap <silent> <leader>s :CtrlPRoot<CR>
-let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
+" let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
+let g:ctrlp_user_command = 'rg --files %s'
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
