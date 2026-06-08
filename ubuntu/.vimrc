@@ -79,9 +79,13 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " ctrlp
 " 12-05-26: ripgrep already ignores hidden dirs like .git, and respects .gitignore (i.e. ignores files/dirs in .gitignore)
-nnoremap <silent> <leader>s :CtrlPRoot<CR>
+" nnoremap <silent> <leader>s :CtrlPRoot<CR>
 " let g:ctrlp_custom_ignore = 'node_modules\|git\|build\|bin\|CMakeFiles\|.clangd\|docs\|resources\|pointclouds'
-let g:ctrlp_user_command = 'rg --files %s'
+" let g:ctrlp_user_command = 'rg --files %s'
+
+" fzf
+" 08-06-26: use fzf instead of ctrlp (latter wasn't working!) => both fzf & fzf.vim must be cloned
+nnoremap <silent> <leader>s :Files<CR>
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1

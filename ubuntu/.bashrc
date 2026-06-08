@@ -125,5 +125,5 @@ export PS1="\[\e[1;92m\]\u@\h\[\e[0m\] \[\e[1;31m\]\w $ \[\e[0m\]"
 export PATH=$PATH:/home/hakim/bin
 export EDITOR=/usr/bin/vim
 
-# fortunes
-fortune | cowsay
+# hakim: rg respects .gitignore
+export FZF_DEFAULT_COMMAND="rg --files"
