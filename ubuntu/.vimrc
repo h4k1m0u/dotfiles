@@ -11,6 +11,10 @@ set autoindent
 set expandtab
 set hlsearch
 set number
+
+" don't close buffer when switching tabs (otherwise history cannot be undone)
+set hidden
+
 let mapleader = ","
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
