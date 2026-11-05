@@ -15,6 +15,9 @@ set number
 " don't close buffer when switching tabs (otherwise history cannot be undone)
 set hidden
 
+" jump between matching if/fi & for/done in bash
+runtime macros/matchit.vim
+
 let mapleader = ","
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap ; :
