@@ -43,6 +43,9 @@ vim.keymap.set('n', '<leader>b', '<C-u>')
 vim.keymap.set('n', 'tj', '}')
 vim.keymap.set('n', 'tk', '{')
 
+-- for bash-language-server (to show ShellCheck warning codes: SCxxxx)
+vim.keymap.set('n', 'gs', vim.diagnostic.open_float)
+
 -- install plugins
 vim.pack.add({
   -- nvim-tree (nerdtree alternative)
@@ -105,8 +108,9 @@ vim.lsp.config('*', { capabilities = capabilities })
 
 -- nvim-lspconfig (ycm)
 -- needed to configure lsp cmds & matching filetypes
--- enable language servers (clangd for c/c++, pyright for python, lua-language-server for lua)
-vim.lsp.enable({ 'clangd', 'pyright', 'lua_ls' })
+-- enable language servers:
+-- clangd for c/c++, pyright for python, lua-language-server for lua, bash-language-server/shellcheck for bash
+vim.lsp.enable({ 'clangd', 'pyright', 'lua_ls', 'bashls' })
 
 -- shows error messages directly at the end of the line (doesn't work without enabling lsp above)
 vim.diagnostic.config({ virtual_text = true })
