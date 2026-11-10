@@ -66,10 +66,10 @@ xnoremap <leader>p "+p
 nnoremap <leader>v "*p
 xnoremap <leader>v "*p
 
-" use 0" register in visual mode instead of defaul one
-" https://stackoverflow.com/a/1504373/2228912
-xnoremap d "0d
-xnoremap p "0p
+" 10-11-26: needed to replace multiple occurrences of word in visual-mode sequentially
+" otherwise `p` replaces unamed register with replaced text, in contrast with `P` (see :h v_p)
+" https://stackoverflow.com/a/74935585/2228912
+xnoremap p P
 
 " status bar
 set laststatus=2

@@ -40,8 +40,13 @@ vim.keymap.set('n', '<leader>f', '<C-d>')
 vim.keymap.set('n', '<leader>b', '<C-u>')
 
 -- block by block navigation
-vim.keymap.set('n', 'tj', '}')
-vim.keymap.set('n', 'tk', '{')
+vim.keymap.set({ 'n', 'v' }, 'tj', '}')
+vim.keymap.set({ 'n', 'v' }, 'tk', '{')
+
+-- needed to replace multiple occurrences of a word in visual-mode sequentially
+-- otherwise `p` replaces unamed register with replaced text, in contrast with `P` (see :h v_p)
+-- https://stackoverflow.com/a/74935585/2228912
+vim.keymap.set('x', 'p', 'P')
 
 -- for bash-language-server (to show ShellCheck warning codes: SCxxxx)
 vim.keymap.set('n', 'gs', vim.diagnostic.open_float)
@@ -65,6 +70,9 @@ vim.pack.add({
   'https://github.com/hrsh7th/nvim-cmp', -- autocomplete
   'https://github.com/hrsh7th/cmp-nvim-lsp', -- bridge between cmp & lsp
   'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help', -- functions signatures
+
+  -- nvim-surround (vim-surround alternative)
+  'https://github.com/kylechui/nvim-surround'
 })
 
 -- nvim-tree (nerdtree)
@@ -76,6 +84,7 @@ vim.keymap.set('n', '<F2>', ':NvimTreeToggle<CR>')
 -- telescope (ctrlp)
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', 'ff', builtin.find_files)
+vim.keymap.set('n', 'fb', builtin.buffers)
 
 -- lualline (vim-airline: bottom status line)
 require('lualine').setup()
