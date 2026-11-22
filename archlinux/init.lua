@@ -51,6 +51,10 @@ vim.keymap.set('x', 'p', 'P')
 -- for bash-language-server (to show ShellCheck warning codes: SCxxxx)
 vim.keymap.set('n', 'gs', vim.diagnostic.open_float)
 
+-- paste from OS clipboard (text copied using Ctrl-C or from right-click menu)
+-- needed on wayland (Ubuntu 26.04 KDE 6.6): apt install wl-clipboard
+vim.keymap.set('n', '<leader>v', '"+p')
+
 -- install plugins
 vim.pack.add({
   -- nvim-tree (nerdtree alternative)
@@ -72,7 +76,7 @@ vim.pack.add({
   'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help', -- functions signatures
 
   -- nvim-surround (vim-surround alternative)
-  'https://github.com/kylechui/nvim-surround'
+  'https://github.com/kylechui/nvim-surround',
 })
 
 -- nvim-tree (nerdtree)
